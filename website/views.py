@@ -3,12 +3,12 @@ from flask import Blueprint, render_template, request
 
 views = Blueprint('views',__name__,)
 
-
+# home route
 @views.route('/')
 def home():
     return render_template('home.html', user={'name':'Evise', 'city':'Hometown'}, number_of_views=123)
 
-
+# route for user data as a path
 @views.route('/user/<path:user_data>')
 def user(user_data):
     args=os.path.split(user_data)
