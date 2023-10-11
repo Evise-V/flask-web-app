@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{ username }}'s' home</title>
+{% endblock %}
+
+{% block body %}
+<h1>User {{ username }} profile</h1>
+{% if usercity %}
+    <h2>Home city is {{ usercity }}</h2>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<title>{{ user.name }}'s home</title>
+{% endblock %}
+
+{% block body %}
+<h1>Home page</h1>
+<h2>This is {{user.name}} from  {{user.city}} </h2>
+<span>number of views = {{number_of_views}}</span>
+{% endblock %}
