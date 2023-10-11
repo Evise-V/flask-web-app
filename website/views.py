@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, request
 
 views = Blueprint('views',__name__,)
 
-
+# home route
 @views.route('/')
 def home():
     return render_template('home.html', user={'name':'Evise', 'city':'Hometown'}, number_of_views=123)
