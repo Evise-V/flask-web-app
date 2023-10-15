@@ -5,9 +5,19 @@ name: Flask web app test
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      - main
+    paths:
+       - 'website/**'
+       - 'main.py'
   pull_request:
-    branches: [ "main" ]
+    branches:
+      - main
+    paths:
+       - 'website/**'
+       - 'main.py'
+  workflow_dispatch:
+    
 
 permissions:
   contents: read
