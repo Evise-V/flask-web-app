@@ -50,7 +50,7 @@ jobs:
         # for simple tests (npm test, etc.) just run a local image in docker
       - name: Unit Testing in Docker
         run: |
-          docker run --rm --entrypoint "usr/local/bin/python" ${{ github.run_id }} -m pytest -p no:cacheprovider
+          docker run --rm --entrypoint "/usr/local/bin/python" ${{ github.run_id }} -m pytest -p no:cacheprovider
           
       - name: Docker meta
         id: docker_meta
