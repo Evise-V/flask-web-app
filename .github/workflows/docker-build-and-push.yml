@@ -35,7 +35,23 @@ jobs:
           # NOTE: github.actor is the username of the person who triggered the workflow
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
+          
+      - name: Build and export to Docker
+        uses: docker/build-push-action@v5
+        with:
+          push: false
+          load: true # Export to Docker Engine rather than pushing to a registry
+          tags: ${{ github.run_id }}
+          target: test
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+#          platforms: linux/amd64
 
+        # for simple tests (npm test, etc.) just run a local image in docker
+      - name: Unit Testing in Docker
+        run: |
+          docker run --rm --entrypoint "usr/local/bin/python" ${{ github.run_id }} -m pytest -p no:cacheprovider
+          
       - name: Docker meta
         id: docker_meta
         uses: docker/metadata-action@v4
@@ -60,6 +76,6 @@ jobs:
           labels: ${{ steps.docker_meta.outputs.labels }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
-          platforms: linux
+#          platforms: linux
     
     
