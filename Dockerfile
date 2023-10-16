@@ -2,9 +2,11 @@ FROM python:3.12-slim
 
 WORKDIR /code
 
-COPY ./website /code/website
-
 COPY ./requirements.txt /code/requirements.txt
+
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt 
+
+COPY ./website /code/website
 
 COPY ./main.py /code/main.py
  
@@ -22,9 +24,6 @@ RUN set -ex \
     && apt-get autoremove -y \
     && apt-get clean -y \
     && rm -rf /var/lib/apt/lists/*
-
-
-RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt 
 
 USER appuser
 
