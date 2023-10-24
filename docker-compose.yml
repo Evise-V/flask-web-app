@@ -1,0 +1,34 @@
+version: '3.8'
+services:
+  apache:
+    build:
+      dockerfile: ./Dockerfile.apache
+      context: ./apache
+    ports:
+      - 80:80
+      - 443:443
+    image: apache2-img
+    container_name: apache2-Container
+    networks:
+      - internal
+    volumes:
+      - ./apache/conf/certs:/usr/local/apache2/conf/certs
+
+  flask:
+    build:
+      dockerfile: ./Dockerfile
+    # ports:
+    #   - 8000:8000
+    image: flask-app-img
+    container_name: flask-app-Container
+    command:
+      - --host=flask-app-Container
+      - --port=8000
+    networks:
+      - internal
+    depends_on:
+      - apache
+
+networks:
+  internal:
+    driver: bridge
