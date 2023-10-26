@@ -1,0 +1,12 @@
+FROM httpd:2.4
+COPY ./conf/httpd.conf /usr/local/apache2/conf/httpd.conf
+COPY ./conf/extra/evise-ssl.conf /usr/local/apache2/conf/extra/evise-ssl.conf
+
+RUN mkdir -p /usr/local/apache2/conf/certs
+
+# COPY ./conf/certs/evise.net.local.crt /usr/local/apache2/conf/certs/evise.net.local.crt
+# COPY ./conf/certs/evise.net.local.key /usr/local/apache2/conf/certs/evise.net.local.key
+
+
+# docker build -f Dockerfile.apache -t my-apache .
+# docker run  --name my-running-app -p 80:80 -p 443:443 my-apache

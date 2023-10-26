@@ -31,3 +31,10 @@ EXPOSE 8000
 
 ENTRYPOINT ["flask", "--app=main", "run"]
 CMD ["--host=0.0.0.0", "--port=8000"]
+
+
+# docker build -t flask-app .
+# docker run -p 8000:8000 flask-app 
+# docker run --rm --entrypoint "/usr/local/bin/python" flask-app  -m pytest -p no:cacheprovider
+# docker container rm -f $(docker container ls -aq)
+# docker image rm $(docker image ls -q)
