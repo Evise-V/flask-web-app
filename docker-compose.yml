@@ -32,3 +32,5 @@ services:
 networks:
   internal:
     driver: bridge
+
+# docker-compose up --build
